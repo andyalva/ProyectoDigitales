@@ -31,14 +31,14 @@ module tester
 	#2 DATA_IN = 0; //C
 
 
-	#2 DATA_IN = 1;
+	#2 DATA_IN = 0;
 	#2 DATA_IN = 0;
 	#2 DATA_IN = 1;
-	#2 DATA_IN = 0;
+	#2 DATA_IN = 1;//3
+	#2 DATA_IN = 1;
 	#2 DATA_IN = 1;
 	#2 DATA_IN = 0;
-	#2 DATA_IN = 1;
-	#2 DATA_IN = 0;
+	#2 DATA_IN = 1;//D
 
 	#2 DATA_IN = 0;
 	#2 DATA_IN = 0;

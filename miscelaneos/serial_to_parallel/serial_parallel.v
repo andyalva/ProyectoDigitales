@@ -12,21 +12,39 @@ module serial_parallel_cond
     reg [2:0] 	    rCurrentState, rNextState;
     reg [6:0] 	    rBuffer;
     reg [7:0]       check;
-    wire            Valid;
+    reg             Valid;
 
-
-    assign Valid = (8'hBC && check);
-
-    always @(posedge CLK)
+    always @(negedge CLK)
         begin
-            if (~Valid)    
+            if(check == 8'hBC)
                 begin
-                    check <= {check[7:1], DATA_IN};
+                    Valid <= 1;
+                end
+            else
+                begin  
+                    Valid <= 0;
+                end
+            if(RESET)
+                begin
+                    check <= 0;
                 end
             else
                 begin
                     check <= check;
                 end
+        end
+
+
+    always @(negedge CLK)
+        begin
+            if (Valid == 0)    
+                begin
+                    check <= { check[6:0], DATA_IN};
+                end
+            else
+                begin
+                    check <= check;
+                end                
         end
 
 
@@ -57,17 +75,17 @@ module serial_parallel_cond
                     case (rCurrentState) 
                         0:
                             begin
-                                rBuffer[0] <= DATA_IN;
+                                rBuffer[6] <= DATA_IN;
                                 rNextState <= 1;
                             end
                         1:
                             begin
-                                rBuffer[1] <= DATA_IN;
+                                rBuffer[5] <= DATA_IN;
                                 rNextState <= 2;
                             end
                         2:
                             begin
-                                rBuffer[2] <= DATA_IN;
+                                rBuffer[4] <= DATA_IN;
                                 rNextState <= 3;
                             end
                         3:
@@ -77,17 +95,17 @@ module serial_parallel_cond
                             end
                         4:
                             begin
-                                rBuffer[4] <= DATA_IN;
+                                rBuffer[2] <= DATA_IN;
                                 rNextState <= 5;
                             end
                         5:
                             begin
-                                rBuffer[5] <= DATA_IN;
+                                rBuffer[1] <= DATA_IN;
                                 rNextState <= 6;
                             end
                         6:
                             begin
-                                rBuffer[6] <= DATA_IN;
+                                rBuffer[0] <= DATA_IN;
                                 rNextState <= 7;
                             end
                         7:
@@ -99,7 +117,7 @@ module serial_parallel_cond
                             begin
                                 rNextState <= 0;
                             end
-                    endcase // casex (woResult)
+                    endcase
                 end
             else
                 begin
