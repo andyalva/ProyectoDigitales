@@ -21,20 +21,18 @@ module mux_de_control_forzado(input [3:0] CONTROL,
 			9: OUT <= Tx_Buffer; //DATA
 			default: OUT <= 0;
 		endcase
-	end
+	end	
 
-/*
-	always @ (negedge CLK) begin
+	always @ (posedge CLK) begin
 
-		if (CONTROL !=  5)
-			
+		if (CONTROL == 0)
+
 			VALID = 1;
 
 		else
 
-			VALID = 0;	
+			VALID = VALID;
 
-	end	
-*/
+	end
  
 endmodule
