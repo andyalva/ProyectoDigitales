@@ -14,8 +14,8 @@ module serial_parallel_cond
     reg [7:0]       check;
     reg             Valid;
 
-    always @(negedge CLK)
-        begin
+    always @(posedge CLK)
+        begin    
             if(check == 8'hBC)
                 begin
                     Valid <= 1;
@@ -28,12 +28,7 @@ module serial_parallel_cond
                 begin
                     check <= 0;
                 end
-            else
-                begin
-                    check <= check;
-                end
         end
-
 
     always @(negedge CLK)
         begin
@@ -46,6 +41,12 @@ module serial_parallel_cond
                     check <= check;
                 end                
         end
+
+    always @(posedge Valid)
+        begin
+            rCurrentState <= 0;    
+        end
+
 
 
     always @(posedge CLK)
@@ -110,7 +111,7 @@ module serial_parallel_cond
                             end
                         7:
                             begin
-                                DATA_OUT <= {DATA_IN, rBuffer};
+                                DATA_OUT <= {rBuffer, DATA_IN};
                                 rNextState <= 0;
                             end
                         default:
