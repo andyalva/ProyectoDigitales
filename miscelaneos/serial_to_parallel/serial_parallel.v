@@ -13,116 +13,97 @@ module serial_parallel_cond
     reg [6:0] 	    rBuffer;
     reg [7:0]       check;
     reg             Valid;
+    reg             Valid_next;
+    reg             Valid_neg;
+    reg             Start;
+
+
+    always @(*) //HAcer lo mismo con DataOut
+        begin
+            Valid_next = Valid;
+            if (check == 8'hBC)
+                begin
+                    Valid_next = 1;
+                end
+
+        end
+
+    always @(*)
+        begin
+            Valid_neg = ~Valid;
+            Start = Valid_neg && Valid_next;
+        end    
 
     always @(posedge CLK)
-        begin    
-            if(check == 8'hBC)
-                begin
-                    Valid <= 1;
-                end
-            else
-                begin  
-                    Valid <= 0;
-                end
+        begin
             if(RESET)
                 begin
                     check <= 0;
-                end
-        end
-
-    always @(negedge CLK)
-        begin
-            if (Valid == 0)    
-                begin
-                    check <= { check[6:0], DATA_IN};
+                    Valid <= 0;
+                    rCurrentState <= 0;
                 end
             else
                 begin
-                    check <= check;
-                end                
-        end
-
-    always @(posedge Valid)
-        begin
-            rCurrentState <= 0;    
-        end
-
-
-
-    always @(posedge CLK)
-        begin
-            if (Valid)
-                begin
-                    if (RESET)
+                    if (Start)
                         begin
-                            rCurrentState <= 0;
+                            rCurrentState = 0; 
+                            DATA_OUT = 8'hBC; 
                         end
-                    else
+                    Valid <= Valid_next;
+                    if (Valid_next == 0)    
                         begin
-                            rCurrentState <= rNextState;
+                            check <= { check[6:0], DATA_IN};
                         end
-                end
-            else
-                begin
-                    rCurrentState <= rCurrentState;
-                end
+                    else //Reset = 0 / Valid_next = 1   
+                        begin
+                            case (rCurrentState) 
+                                0:
+                                    begin
+                                        rBuffer[6] <= DATA_IN;
+                                        rCurrentState <= 1;
+                                    end
+                                1:
+                                    begin
+                                        rBuffer[5] <= DATA_IN;
+                                        rCurrentState <= 2;
+                                    end
+                                2:
+                                    begin
+                                        rBuffer[4] <= DATA_IN;
+                                        rCurrentState <= 3;
+                                    end
+                                3:
+                                    begin
+                                        rBuffer[3] <= DATA_IN;
+                                        rCurrentState <= 4;
+                                    end
+                                4:
+                                    begin
+                                        rBuffer[2] <= DATA_IN;
+                                        rCurrentState <= 5;
+                                    end
+                                5:
+                                    begin
+                                        rBuffer[1] <= DATA_IN;
+                                        rCurrentState <= 6;
+                                    end
+                                6:
+                                    begin
+                                        rBuffer[0] <= DATA_IN;
+                                        rCurrentState <= 7;
+                                    end
+                                7:
+                                    begin
+                                        DATA_OUT <= {rBuffer, DATA_IN};
+                                        rCurrentState <= 0;
+                                    end
+                                default:
+                                    begin
+                                        rCurrentState <= rCurrentState;
+                                    end
+                            endcase
+                        end
+                end 
         end
 
-
-   always @(negedge CLK)
-        begin
-            if (Valid)
-                begin
-                    case (rCurrentState) 
-                        0:
-                            begin
-                                rBuffer[6] <= DATA_IN;
-                                rNextState <= 1;
-                            end
-                        1:
-                            begin
-                                rBuffer[5] <= DATA_IN;
-                                rNextState <= 2;
-                            end
-                        2:
-                            begin
-                                rBuffer[4] <= DATA_IN;
-                                rNextState <= 3;
-                            end
-                        3:
-                            begin
-                                rBuffer[3] <= DATA_IN;
-                                rNextState <= 4;
-                            end
-                        4:
-                            begin
-                                rBuffer[2] <= DATA_IN;
-                                rNextState <= 5;
-                            end
-                        5:
-                            begin
-                                rBuffer[1] <= DATA_IN;
-                                rNextState <= 6;
-                            end
-                        6:
-                            begin
-                                rBuffer[0] <= DATA_IN;
-                                rNextState <= 7;
-                            end
-                        7:
-                            begin
-                                DATA_OUT <= {rBuffer, DATA_IN};
-                                rNextState <= 0;
-                            end
-                        default:
-                            begin
-                                rNextState <= 0;
-                            end
-                    endcase
-                end
-            else
-                begin
-                    DATA_OUT <= DATA_OUT;
-                end
-        end
 endmodule

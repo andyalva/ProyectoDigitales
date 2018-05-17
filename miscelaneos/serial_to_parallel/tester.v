@@ -4,13 +4,14 @@ module tester
    output reg RESET,
    output reg CLK
    );
-
+//Usar posedge CLK y asignaciones no bloqueantes
    initial
      begin
 	CLK = 0;
 	RESET = 0;
 	#5 RESET = 1;
 	#4 RESET = 0;
+	DATA_IN = 1;
 
 	#2 DATA_IN = 1;
 	#2 DATA_IN = 1;
