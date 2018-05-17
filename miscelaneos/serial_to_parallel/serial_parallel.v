@@ -15,6 +15,7 @@ module serial_parallel_cond
     reg             Valid;
     reg             Valid_next;
     reg             Valid_neg;
+    reg [7:0]       DataOut_next;
     reg             Start;
 
 
@@ -24,6 +25,16 @@ module serial_parallel_cond
             if (check == 8'hBC)
                 begin
                     Valid_next = 1;
+                end
+
+        end
+
+    always @(*) //HAcer lo mismo con DataOut
+        begin
+            DataOut_next = DATA_OUT;
+            if (Start == 1)
+                begin
+                    DataOut_next = 8'hBC;
                 end
 
         end
@@ -47,8 +58,8 @@ module serial_parallel_cond
                     if (Start)
                         begin
                             rCurrentState = 0; 
-                            DATA_OUT = 8'hBC; 
                         end
+                    DATA_OUT <= DataOut_next;
                     Valid <= Valid_next;
                     if (Valid_next == 0)    
                         begin
@@ -94,7 +105,7 @@ module serial_parallel_cond
                                     end
                                 7:
                                     begin
-                                        DATA_OUT <= {rBuffer, DATA_IN};
+                                        DataOut_next <= {rBuffer, DATA_IN};
                                         rCurrentState <= 0;
                                     end
                                 default:
