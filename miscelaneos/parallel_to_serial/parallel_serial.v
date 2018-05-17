@@ -19,17 +19,9 @@ module parallel_serial_cond
 				begin
 					rCurrentState <= 0;
 				end
-			else if (Valid)
-				begin
-					rCurrentState <=rNextState;
-				end
-			else
-				begin
-					rNextState <= 0;
-				end
 		end
 			
-	always @(negedge CLK)
+	always @(posedge CLK)
 		begin
 			if(Valid)
 				begin
@@ -37,47 +29,47 @@ module parallel_serial_cond
 						0:
 							begin
 								rBuffer <= DATA_IN;
-								DATA_OUT <= DATA_IN[0];
-								rNextState <= 1;
+								DATA_OUT <= DATA_IN[7];
+								rCurrentState <= 1;
 							end
 						1: 
 							begin
-								DATA_OUT <= rBuffer[1];
-								rNextState <= 2;
+								DATA_OUT <= rBuffer[6];
+								rCurrentState <= 2;
 							end
 						2:
 							begin
-								DATA_OUT <= rBuffer[2];
-								rNextState <= 3;
+								DATA_OUT <= rBuffer[5];
+								rCurrentState <= 3;
 							end
 						3:
 							begin
-								DATA_OUT <= rBuffer[3];
-								rNextState <= 4;
+								DATA_OUT <= rBuffer[4];
+								rCurrentState <= 4;
 							end
 						4:
 							begin
-								DATA_OUT <= rBuffer[4];
-								rNextState <= 5;
+								DATA_OUT <= rBuffer[3];
+								rCurrentState <= 5;
 							end
 						5:
 							begin
-								DATA_OUT <= rBuffer[5];
-								rNextState <= 6;
+								DATA_OUT <= rBuffer[2];
+								rCurrentState <= 6;
 							end
 						6:
 							begin
-								DATA_OUT <= rBuffer[6];
-								rNextState <= 7;
+								DATA_OUT <= rBuffer[1];
+								rCurrentState <= 7;
 							end
 						7:
 							begin
-								DATA_OUT <= rBuffer[7];
-								rNextState <= 0;
+								DATA_OUT <= rBuffer[0];
+								rCurrentState <= 0;
 							end
 						default:
 							begin
-								rNextState <= 0;
+								rCurrentState <= 0;
 							end
 					endcase // casex (woResult)
 				end

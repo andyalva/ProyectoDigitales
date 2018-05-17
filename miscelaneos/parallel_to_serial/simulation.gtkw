@@ -1,20 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.79 (w)1999-2017 BSI
-[*] Wed May  9 16:25:27 2018
+[*] Thu May 17 15:52:29 2018
 [*]
-[dumpfile] "/home/andres/Desktop/Andy/UCR/Digitales2/Proyecto1/miscelaneos/parallel_to_serial/simulation.vcd"
-[dumpfile_mtime] "Wed May  9 16:24:27 2018"
-[dumpfile_size] 10308
-[savefile] "/home/andres/Desktop/Andy/UCR/Digitales2/Proyecto1/miscelaneos/parallel_to_serial/simulation.gtkw"
-[timestart] 38400
-[size] 1366 704
-[pos] -39 -39
-*-12.000000 44000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "/home/andres/ProyectoDigitales/miscelaneos/parallel_to_serial/simulation.vcd"
+[dumpfile_mtime] "Thu May 17 15:52:20 2018"
+[dumpfile_size] 13385
+[savefile] "/home/andres/ProyectoDigitales/miscelaneos/parallel_to_serial/simulation.gtkw"
+[timestart] 14830
+[size] 1920 1163
+[pos] -1921 -1
+*-13.000000 44000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] testbench.
 [sst_width] 229
-[signals_width] 174
+[signals_width] 216
 [sst_expanded] 1
-[sst_vpaned_height] 175
+[sst_vpaned_height] 334
 @28
 testbench.uut_cond.CLK
 @800023
