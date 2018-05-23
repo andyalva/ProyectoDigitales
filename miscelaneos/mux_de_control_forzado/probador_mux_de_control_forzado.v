@@ -10,25 +10,23 @@ module probador_mux_de_control_forzado(CONTROL, CLK, VALID, OUT);
 		CLK = 0;
 		OUT <= 8'h00;
 
-		#43 CONTROL <= 0;
+		#40 CONTROL <= 1;
 
-		#43 CONTROL <= 1;
+		#40 CONTROL <= 2;
 
-		#43 CONTROL <= 2;
+		#40 CONTROL <= 3;
 
-		#43 CONTROL <= 3;
+		#40 CONTROL <= 4;
 
-		#43 CONTROL <= 4;
+		#40 CONTROL <= 5;
 
-		#43 CONTROL <= 5;
+		#40 CONTROL <= 6;
 
-		#43 CONTROL <= 6;
+		#40 CONTROL <= 7;
 
-		#43 CONTROL <= 7;
+		#40 CONTROL <= 8;
 
-		#43 CONTROL <= 8;
-
-		#43 CONTROL <= 9;
+		#40 CONTROL <= 9;
 
 		#40 $finish;
 
