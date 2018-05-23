@@ -14,6 +14,7 @@ module pcie(input reset,
 		input RESET,
 		input [3:0] CONTROL,
 		input [7:0] Tx_Buffer,
+		input CLK,
 		output [7:0] DATA,
 		output VALID_OUT);
 
