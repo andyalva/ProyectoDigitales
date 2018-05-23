@@ -7,15 +7,17 @@
 
 // Union de modulos de manera estructural
 
-module pcie();
+module pcie(input reset,
+		input RESET,
+		input [3:0] CONTROL,
+		input [7:0] Tx_Buffer,
+		output [7:0] DATA,
+		output VALID_OUT);
 
-	wire [3:0] CONTROL;
-	wire VALIDMUX;
-	wire [7:0] Tx_Buffer;
+	// Wires de conexion
 	wire CLK;
+	wire VALID;
 	wire [7:0] OUTMUX;
-	wire reset;
-	wire RESET;
 	wire [7:0] data0;
 	wire [7:0] data1;
 	wire [7:0] data2;
@@ -25,11 +27,9 @@ module pcie();
 	wire [7:0] paralelo2;
 	wire [7:0] paralelo3;
 	wire [7:0] OUTSTRIPPING;
-	wire VALID_OUT;
-	wire [7:0] DATA;
 
 	// Mux inicial
-	mux_de_control_forzado mux (CONTROL, VALIDMUX, Tx_Buffer, CLK, OUTMUX);
+	mux_de_control_forzado mux (CONTROL, VALID, Tx_Buffer, CLK, OUTMUX);
 
 	// Byte Striping RX
 	//bytestripingRX byteRX (CLK, reset, VALIDMUX, OUTMUX, data0, data1, data2, data3);
