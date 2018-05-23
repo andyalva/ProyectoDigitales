@@ -1,5 +1,5 @@
 
-NAME='size_convert'
+NAME='CLK_250hz'
 SRC='test_bench.v'
 
 VC='iverilog'

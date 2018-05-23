@@ -1,5 +1,5 @@
 
-NAME='serial_parallel'
+NAME='CLK_250hz'
 SRC='test_bench.v'
 
 VC='iverilog'
@@ -10,7 +10,7 @@ VC_RUN='vvp'
 
 SYNTH='yosys'
 SYNTHFLAGS='-c'
-SYNTH_NAME='synth.v'
+SYNTH_NAME='synth'
 
 DIR_VCLIB='../../include/common/v_tech_lib/cmos.v'
 DIR_SYNTHLIB='../../include/common/yosys_lib/cmos.lib'
