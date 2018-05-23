@@ -4,6 +4,9 @@
 `include "demux/demux.v"
 `include "parallel_to_serial/parallel_serial.v"
 `include "serial_to_parallel/serial_parallel.v"
+`include "Byte_Striping/byte_striping.v"
+`include "clk_250hz/clk_250hz.v"
+`include "clk_1Mhz/clk_1Mhz.v"
 
 // Union de modulos de manera estructural
 
@@ -11,6 +14,7 @@ module pcie(input reset,
 		input RESET,
 		input [3:0] CONTROL,
 		input [7:0] Tx_Buffer,
+		input CLK,
 		output [7:0] DATA,
 		output VALID_OUT);
 
@@ -27,12 +31,20 @@ module pcie(input reset,
 	wire [7:0] paralelo2;
 	wire [7:0] paralelo3;
 	wire [7:0] OUTSTRIPPING;
+	wire clk1;
+	wire clk250;
+
+	// CLK 1MHz
+	clk_1Mhz_cond clkmux (CLK, RESET, clk1);
 
 	// Mux inicial
-	mux_de_control_forzado mux (CONTROL, VALID, Tx_Buffer, CLK, OUTMUX);
+	mux_de_control_forzado mux (CONTROL, VALID, Tx_Buffer, clk1, OUTMUX);
+
+	// CLK 250kHz
+	clk_250hz_cond clk250 (CLK, RESET, clk250);
 
 	// Byte Striping RX
-	//bytestripingRX byteRX (CLK, reset, VALIDMUX, OUTMUX, data0, data1, data2, data3);
+	bytestripingRX byteRX (clk250, reset, VALID, OUTMUX, data0, data1, data2, data3);
 
 	// Paralelo a Serial RX (4 lineas, 4 modulos)
 	parallel_serial_cond serial0 (data0, CLK, RESET, VALID, dataserial0);
@@ -56,6 +68,6 @@ module pcie(input reset,
 	//bytestripingTX ();
 
 	// Demux final
-	demux muxTX (OUTSTRIPPING, CLK, VALID, VALID_OUT, DATA);
+	demux muxTX (OUTSTRIPPING, clk1, VALID, VALID_OUT, DATA);
 	
 endmodule
