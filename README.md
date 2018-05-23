@@ -6,8 +6,22 @@ Grupo #4
 
 ## Integrantes
 
-Andrés Alvarado (Parallel to serial - Serial to parallel)
+Andrés Alvarado B30316
 
-Alejandro Rojas (Byte Stripping)
+Alejandro Rojas B36049
 
-Fernando González (Mux - Demux)
+Fernando González B43023
+
+## División de Trabajo
+
+* Andres Alvarado
+  * Parallel to serial
+  * Serial to parallel
+  * Clk converter
+* Alejandro Rojas
+  * Byte Stripping RX
+  * Byte Stripping TX
+* Fernando González
+  * Mux
+  * DeMux
+  * Union de Modulos
