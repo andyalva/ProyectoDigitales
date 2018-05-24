@@ -18,7 +18,7 @@ module probador_pcie(reset, RESET, CONTROL, CLK, DATA, VALID_OUT);
 		#3 reset = 0;
 		RESET = 0;
 
-		#100 $finish;
+		#20 $finish;
 
 	end
 
