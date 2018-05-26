@@ -15,9 +15,9 @@ module bytestripingTX( input clk, reset, valid,
  reg [7:0] state, next_state; // Se le asignan 8 bits para utlizar one-hot.
 
 //Bloque de Flip Flops
- always @(posedge clk or negedge reset)
+ always @(posedge clk or reset)
 
-	if(!reset)begin
+	if(reset)begin
 	  state <= 8'b00000000;
 	  state[LaneA] <= 1'b1;
 	  data_out0<=8'b00000000;
@@ -25,7 +25,8 @@ module bytestripingTX( input clk, reset, valid,
 	  data_out2<=8'b00000000;
 	  data_out3<=8'b00000000;
 	end
-	else begin state <= next_state;
+	else if(valid) begin 
+		state <= next_state;
 		data_out0<=data_out0_next;
 		data_out1<=data_out1_next;	//Flops para mantener el dato y evitar latches
 		data_out2<=data_out2_next;

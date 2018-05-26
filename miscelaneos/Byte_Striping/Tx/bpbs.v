@@ -5,21 +5,13 @@ module bpbs ( output reg clk, reset, valid,
 
    initial
      begin	
-	reset=0;
+	reset=1;
 	clk=0;
-	valid=0;
+	valid=1;
 	data <= 8'h00;
-	/*data_out0 <= 8'b00000000;
-	data_out1 <= 8'b00000000;
-	data_out2 <= 8'b00000000;
-	data_out3 <= 8'b00000000;*/
-	@(posedge clk);
-	reset <=1;
-	@(posedge clk);
-	valid<=1;
 	#10;
 	@(posedge clk);
-	reset <=1;
+	reset <=0;
 	@(posedge clk);
 	valid<=1;
 	@(posedge clk);
