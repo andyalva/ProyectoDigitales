@@ -8,6 +8,7 @@
 `include "Byte_Striping/Tx/byte_stripingTx.v"
 `include "clk_250hz/clk_250hz.v"
 `include "clk_1Mhz/clk_1Mhz.v"
+`include "cmos_cells.v"
 
 // Union de modulos de manera estructural
 
@@ -31,6 +32,10 @@ module pcie(input reset,
 	wire [7:0] paralelo1;
 	wire [7:0] paralelo2;
 	wire [7:0] paralelo3;
+	wire [7:0] dataserial0;
+	wire [7:0] dataserial1;
+	wire [7:0] dataserial2;
+	wire [7:0] dataserial3;	
 	wire [7:0] OUTSTRIPING;
 	wire clk1;
 	wire clk250;
