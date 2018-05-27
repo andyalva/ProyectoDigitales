@@ -7,14 +7,13 @@ module bpbs ( output reg clk, reset, valid,
      begin	
 	reset=1;
 	clk=0;
-	valid=1;
+	valid=0;
 	data <= 8'h00;
 	#10;
 	@(posedge clk);
 	reset <=0;
 	@(posedge clk);
-	valid<=1;
-	@(posedge clk);
+	valid <= 1;
 	data <= 8'h01;
 	@(posedge clk);
 	data <= 8'h02;

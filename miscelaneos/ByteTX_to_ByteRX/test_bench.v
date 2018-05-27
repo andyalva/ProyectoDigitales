@@ -6,7 +6,7 @@
 module pruebas_pcie();
 
 	input wire RESET;
-  	wire VALID;
+  	wire Valid;
 	wire CLK;
 	wire [7:0] DATA;
 	wire reset;

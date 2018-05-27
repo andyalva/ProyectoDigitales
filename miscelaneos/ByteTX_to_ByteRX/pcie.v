@@ -5,6 +5,7 @@
 `include "../Byte_Striping/Rx/byte_stripingRx.v"
 `include "../Byte_Striping/Tx/byte_stripingTx.v"
 `include "../clk_250hz/clk_250hz.v"
+//`include "ByteTX_test.v"
 
 // Union de modulos de manera estructural
 
@@ -31,10 +32,10 @@ module pcie(
 
 
 	// CLK 250kHz
-	CLK_250hz_cond clkbyte (CLK, RESET, clk250);
+	CLK_250hz_cond clkbyte (CLK, reset, clk250);
 
 	// Byte Striping TX
-	bytestripingTX byteTX (clk250, reset, VALID, DATA, data0, data1, data2, data3);
+	bytestripingTX byteTX (clk250, RESET, VALID, DATA, data0, data1, data2, data3);
 
 	// Paralelo a Serial TX (4 lineas, 4 modulos)
 	parallel_serial_cond serial0 (data0, CLK, RESET, VALID, dataserial0);
@@ -55,6 +56,6 @@ module pcie(
 	serial_parallel_cond parallel3 (dataserial3, CLK, RESET, paralelo3);
 
 	// Byte Striping inverso RX
-	bytestripingRX byteRX (clk250, reset, VALID, OUTSTRIPING, paralelo0, paralelo1, paralelo2, paralelo3);
+	bytestripingRX byteRX (clk250, RESET, VALID, OUTSTRIPING, paralelo0, paralelo1, paralelo2, paralelo3);
 
 endmodule
