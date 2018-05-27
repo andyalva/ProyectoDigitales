@@ -18,7 +18,10 @@ module probador_pcie(RESET, reset, CLK, DATA, Valid);
 
 
 		#47 DATA = 8'b00100101;
+		#32 DATA = 8'b10111100; //BC
 			Valid = 1;
+		#32 DATA = 8'b10111100; //BC
+		#32 DATA = 8'b10111100; //BC
 		#32 DATA = 8'b10111100; //BC
 		#32 DATA = 8'b11111001;
 		#32 DATA = 8'b01001111;

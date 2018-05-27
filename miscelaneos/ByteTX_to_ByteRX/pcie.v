@@ -13,8 +13,8 @@ module pcie(
 		input RESET,
 		input reset,
 		input CLK,
-		output [7:0] DATA,
-		output VALID);
+		input [7:0] DATA,
+		input VALID);
 
 	// Wires de conexion
 	wire CLK;
