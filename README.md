@@ -18,6 +18,7 @@ Fernando González B43023
   * Parallel to serial
   * Serial to parallel
   * Clk converter
+  * Pruebas PCIe
 * Alejandro Rojas
   * Byte Stripping RX
   * Byte Stripping TX
@@ -25,3 +26,14 @@ Fernando González B43023
   * Mux
   * DeMux
   * Union de Modulos
+  * Sintetizacion
+
+## Make it work
+
+Para poder observar la simulación de gtkwave del PCIe completo hacer los siguientes pasos:
+
+cd miscelaneos/pcie/
+
+make
+
+make gtk
