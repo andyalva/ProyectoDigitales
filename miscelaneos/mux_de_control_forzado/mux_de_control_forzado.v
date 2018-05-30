@@ -1,10 +1,11 @@
 `include "define_file.v"
 
-module mux_de_control_forzado(input [3:0] CONTROL,
-                	output reg 	VALID,
+module mux_de_control_forzado(
+			input [3:0] CONTROL,
+            output reg 	VALID,
 			input	[7:0] Tx_Buffer,
 			input 	CLK,
-                        output reg [7:0] OUT);
+            output reg [7:0] OUT);
   
 	always @ (posedge CLK) begin // Se activa en flanco positivo del CLK
 

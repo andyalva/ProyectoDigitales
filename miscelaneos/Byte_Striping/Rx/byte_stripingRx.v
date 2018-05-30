@@ -15,29 +15,22 @@ module bytestripingRX( input clk, reset, valid,
  reg [7:0] state, next_state; // Se le asignan 8 bits para utlizar one-hot.
 
 //Bloque de Flip Flops
- always @(posedge reset)
+ always @(posedge clk) begin
 
 	if(reset)begin
 	  state <= 8'b00000000; 
 	  state[LaneA] <= 1'b1;
 	  data<=8'b00000000;
 	end
-	else if(valid) begin 
-		state <= next_state;
-		data<=data_next;
+end
+
+always @(posedge clk) begin
+	if(valid) begin 
+	state <= next_state;
+	data <= data_next;
 	end
+end
 		
- always @(posedge clk)
-
-	if(reset)begin
-	  state <= 8'b00000000; 
-	  state[LaneA] <= 1'b1;
-	  data<=8'b00000000;
-	end
-	else if(valid) begin 
-		state <= next_state;
-		data<=data_next;
-	end
 
 // Bloque de asignacion de los estados y sus transiciones.
  always@(*) begin
