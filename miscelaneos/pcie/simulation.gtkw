@@ -1,13 +1,13 @@
 [*]
 [*] GTKWave Analyzer v3.3.79 (w)1999-2017 BSI
-[*] Mon May 28 21:19:55 2018
+[*] Wed May 30 00:19:23 2018
 [*]
 [dumpfile] "/home/andres/ProyectoDigitales/miscelaneos/pcie/simulation.vcd"
-[dumpfile_mtime] "Mon May 28 21:18:22 2018"
+[dumpfile_mtime] "Wed May 30 00:18:45 2018"
 [dumpfile_size] 56983
 [savefile] "/home/andres/ProyectoDigitales/miscelaneos/pcie/simulation.gtkw"
 [timestart] 0
-[size] 1920 1163
+[size] 1366 704
 [pos] 0 0
 *-17.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] pruebas_pcie.
@@ -16,38 +16,6 @@
 [signals_width] 182
 [sst_expanded] 1
 [sst_vpaned_height] 325
-@28
-pruebas_pcie.PCIETest.byteTX.clk
-@22
-pruebas_pcie.PCIETest.byteTX.data[7:0]
-pruebas_pcie.PCIETest.byteTX.data_out0_next[7:0]
-pruebas_pcie.PCIETest.byteTX.data_out1_next[7:0]
-pruebas_pcie.PCIETest.byteTX.data_out2_next[7:0]
-pruebas_pcie.PCIETest.byteTX.data_out3_next[7:0]
-@28
-pruebas_pcie.PCIETest.byteTX.reset
-pruebas_pcie.PCIETest.byteTX.valid
-@200
--
-@28
-pruebas_pcie.PCIETest.parallel0.CLK
-pruebas_pcie.PCIETest.parallel0.DATA_IN
-@22
-pruebas_pcie.PCIETest.parallel0.DATA_OUT[7:0]
-pruebas_pcie.PCIETest.parallel0.DataOut_next[7:0]
-@28
-pruebas_pcie.PCIETest.parallel0.RESET
-pruebas_pcie.PCIETest.parallel0.Start
-pruebas_pcie.PCIETest.parallel0.Valid
-pruebas_pcie.PCIETest.parallel0.Valid_neg
-pruebas_pcie.PCIETest.parallel0.Valid_next
-@22
-pruebas_pcie.PCIETest.parallel0.check[7:0]
-pruebas_pcie.PCIETest.parallel0.rBuffer[6:0]
-@28
-pruebas_pcie.PCIETest.parallel0.rCurrentState[2:0]
-@200
--
 @28
 pruebas_pcie.PCIETest.mux.CLK
 @22
@@ -58,12 +26,12 @@ pruebas_pcie.PCIETest.mux.Tx_Buffer[7:0]
 pruebas_pcie.PCIETest.mux.VALID
 @200
 -
-@29
+@28
 pruebas_pcie.PCIETest.muxRX.CLK
-@23
+@22
 pruebas_pcie.PCIETest.muxRX.DATA[7:0]
 pruebas_pcie.PCIETest.muxRX.Rx_buffer[7:0]
-@29
+@28
 pruebas_pcie.PCIETest.muxRX.VALID
 pruebas_pcie.PCIETest.muxRX.VALID_OUT
 [pattern_trace] 1
