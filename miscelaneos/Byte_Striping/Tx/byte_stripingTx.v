@@ -4,7 +4,7 @@ module bytestripingTX( input clk, reset, valid,
 	output reg [7:0] data_out0, data_out1, data_out2, data_out3);
 
 	reg [7:0] data_out0_next, data_out1_next, data_out2_next, data_out3_next;
-	reg [2:0] state, next_state; // Se le asignan 8 bits para utlizar one-hot.
+	reg [2:0] state, next_state; // Se le asignan 3 bits para utlizar one-hot.
 
 //Bloque de Flip Flops
  always @(posedge clk)
