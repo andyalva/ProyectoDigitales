@@ -37,3 +37,7 @@ cd miscelaneos/pcie/
 make
 
 make gtk
+
+## Documentación
+
+El reporte se encuentra en un archivo de PDF en la carpeta "docs".
