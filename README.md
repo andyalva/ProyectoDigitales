@@ -17,9 +17,9 @@ Fernando González B43023
 * Andres Alvarado
   * Buffer
 * Alejandro Rojas
-  * 
+  * FSM
 * Fernando González
-  * 
+  * Round Robin
 
 ## Make it work
 
