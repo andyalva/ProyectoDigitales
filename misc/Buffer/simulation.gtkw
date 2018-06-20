@@ -1,11 +1,11 @@
 [*]
 [*] GTKWave Analyzer v3.3.79 (w)1999-2017 BSI
-[*] Thu Jun 14 22:17:36 2018
+[*] Wed Jun 20 06:18:58 2018
 [*]
-[dumpfile] "/home/andres/ProyectoDigitales/miscelaneos/Buffer/simulation.vcd"
-[dumpfile_mtime] "Thu Jun 14 22:17:24 2018"
-[dumpfile_size] 10782
-[savefile] "/home/andres/ProyectoDigitales/miscelaneos/Buffer/simulation.gtkw"
+[dumpfile] "/home/andres/ProyectoDigitales/misc/Buffer/simulation.vcd"
+[dumpfile_mtime] "Wed Jun 20 06:18:28 2018"
+[dumpfile_size] 11000
+[savefile] "/home/andres/ProyectoDigitales/misc/Buffer/simulation.gtkw"
 [timestart] 0
 [size] 1366 704
 [pos] -1 -1
@@ -21,14 +21,14 @@ testbench.uut_cond.CLK
 testbench.uut_cond.DATA_IN[7:0]
 testbench.uut_cond.DATA_OUT[7:0]
 @28
-testbench.uut_cond.READ
 testbench.uut_cond.RESET
 testbench.uut_cond.Valid
 testbench.uut_cond.WRITE
 @22
-testbench.uut_cond.data[7:0]
 testbench.uut_cond.rBuffer[63:0]
 @28
 testbench.uut_cond.rCurrentState[2:0]
+@29
+testbench.uut_cond.almost_Full
 [pattern_trace] 1
 [pattern_trace] 0
