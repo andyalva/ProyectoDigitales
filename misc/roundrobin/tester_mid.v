@@ -12,10 +12,12 @@ output reg valid;
 	clk = 1;
 	request = 20'b11001110000110111001;
 	reset = 1;
+	empty = 4'b0000;
 	pop_id = 2'b00;
 	valid = 0;
 	#4 reset = 0;
-	#400;
+	#10 empty = 4'b1111;
+	#40;
 	$display ("mem1[0] = %b", mid.mem1[0]);
 	$display ("mem1[1] = %b", mid.mem1[1]);
 	$display ("mem1[2] = %b", mid.mem1[2]);
@@ -26,7 +28,8 @@ output reg valid;
 	$display ("mem1[7] = %b", mid.mem1[7]);
 	$display ("mem1[8] = %b", mid.mem1[8]);
 	$display ("mem1[9] = %b", mid.mem1[9]);
-	#4 $finish;
+	#20 empty = 4'b0000;
+	#100 $finish;
      end
 
    always

@@ -28,64 +28,124 @@ module mid(	input reset,
 			case (count)
 
 				0:
-					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+					begin	
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				1:	
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				2:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				3:
-					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+					begin	
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				4:
-					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+					begin	
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				5:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				6:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				7:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				8:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end	
 				9:
 					begin
-						pop_id <= mem1 [count];
-						count = count + 1;
-						valid = 1;
+						if (empty[mem1[count]] == 0) begin
+							pop_id <= mem1 [count];
+							count = count + 1;
+							valid = 1;
+						end
+						else begin
+							count = count + 1;
+							valid = 0;
+						end
 					end
 				default:
 					begin
