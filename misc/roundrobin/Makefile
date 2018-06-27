@@ -1,4 +1,4 @@
 all:
-	iverilog -o asd test_bench_mid.v
+	iverilog -o asd test_bench.v
 	vvp asd
 	gtkwave simulation.vcd

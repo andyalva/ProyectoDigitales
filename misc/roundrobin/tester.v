@@ -1,26 +1,35 @@
-module tester(clk, id, empty, request, reset);
+module tester(reset, request, pop_id, clk, empty, valid);
 
-output reg [11:0] request;
-output reg [1:0] id;
-output reg [3:0] empty;
+output reg [19:0] request;
 output reg clk;
 output reg reset;
+output reg [1:0] pop_id;
+output reg [3:0] empty;
+output reg valid;
 
    initial
      begin
 	clk = 1;
-	request = 12'b001110000110;
-	id = 0;
+	request = 20'b11001110000110111001;
 	reset = 1;
-	empty = 0;
-	#5 reset = 0;
-	#10;
-	$display ("mem1[0] = %b", robin.mem1[0]);
-	$display ("mem1[1] = %b", robin.mem1[1]);
-	$display ("mem1[2] = %b", robin.mem1[2]);
-	$display ("mem1[3] = %b", robin.mem1[3]);
-	$display ("mem1[4] = %b", robin.mem1[4]);
-	#4 $finish;
+	empty = 4'b0000;
+	pop_id = 2'b00;
+	valid = 0;
+	#4 reset = 0;
+	#10 empty = 4'b1111;
+	#40;
+	$display ("mem1[0] = %b", roundrobin.mem1[0]);
+	$display ("mem1[1] = %b", roundrobin.mem1[1]);
+	$display ("mem1[2] = %b", roundrobin.mem1[2]);
+	$display ("mem1[3] = %b", roundrobin.mem1[3]);
+	$display ("mem1[4] = %b", roundrobin.mem1[4]);
+	$display ("mem1[5] = %b", roundrobin.mem1[5]);
+	$display ("mem1[6] = %b", roundrobin.mem1[6]);
+	$display ("mem1[7] = %b", roundrobin.mem1[7]);
+	$display ("mem1[8] = %b", roundrobin.mem1[8]);
+	$display ("mem1[9] = %b", roundrobin.mem1[9]);
+	#20 empty = 4'b0000;
+	#100 $finish;
      end
 
    always
