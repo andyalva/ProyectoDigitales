@@ -27,3 +27,10 @@ Fernando González B43023
 ## Documentación
 
 El reporte se encuentra en un archivo de PDF en la carpeta "docs".
+
+## Señales FSM
+
+Inputs: clk, reset, init, almost_full, almost_empty, empty_Fifo, no_empty_Fifo, Fifo_overflow(Error cuando esta lleno el FIFO y llega otro dato), data_Fifo(Datos que llegan del FIFO)
+
+Outputs: error_full, pausa, continua,
+
