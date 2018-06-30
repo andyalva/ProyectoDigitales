@@ -23,10 +23,12 @@ module qos(input wire [7:0] DATA_IN,
 	wire ErrStackOverflow;
 	wire ErrNoData;
 	wire [3:0] Empty;
-	wire error_full;
-	wire pausa;
+	wire emptyFSM;
+	wire fullFSM;
+	wire [3:0] error_full;
+	wire [3:0] pausa;
 	reg valid;
-	wire continua;
+	wire [3:0] continua;
 	wire [3:0] Full;
 	wire [1:0] pop_id;
 
@@ -40,7 +42,11 @@ module qos(input wire [7:0] DATA_IN,
 	roundrobin rr0 (RESET, request, pop_id, CLK, valid, Empty, read);
 
 	//FSM
-	FSM fsm0 (CLK, RESET, init, almost_Full, almost_Empty, Full, ErrStackOverflow, error_full, pausa, continua, );
+	assign emptyFSM = Empty[0] & Empty[1] & Empty[2] & Empty[3]; 
+
+	assign fullFSM = Full[0] & Full[1] & Full[2] & Full[3]; 
+	
+	FSM fsm0 (CLK, RESET, init, almost_Full, almost_Empty, emptyFSM, fullFSM, ErrStackOverflow, error_full, pausa, continua, DATA_OUT);
 
 	always @(posedge CLK) begin
 
