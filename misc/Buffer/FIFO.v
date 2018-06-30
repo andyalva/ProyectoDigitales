@@ -13,6 +13,8 @@ module FIFO
 	output reg		almost_Empty,
 	output reg		ErrStackOverflow,
 	output reg		ErrNoData,
+	output reg		Empty,
+	output reg		Full,
 	input wire		Valid
 	);
 
@@ -29,6 +31,8 @@ module FIFO
 					almost_Empty <= 0;
 					ErrStackOverflow <= 0;
 					ErrNoData <= 0;
+					Empty <= 0;
+					Full <= 0;
 				end
 			if(Valid)
 				begin
@@ -44,6 +48,7 @@ module FIFO
 									begin
 										ErrNoData <= 1;
 									end
+								Empty <= 1;
 							end
 						1: 
 							begin
@@ -62,6 +67,7 @@ module FIFO
 										DATA_OUT <= rBuffer[7:0];
 										rBuffer[7:0] <= DATA_IN;
 									end
+								Empty <=  0;
 
 							end
 						2:
@@ -256,6 +262,7 @@ module FIFO
 											begin
 												ErrStackOverflow <= 1;
 											end
+										Full <= 1;
 									end
 								else
 									begin
@@ -585,6 +592,7 @@ module FIFO
 												ErrStackOverflow <= 1;
 											end
 									end
+								Full <= 1;
 							end
 
 						default:
