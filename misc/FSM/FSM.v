@@ -1,11 +1,11 @@
 //Proyecto #2 Circuitos Digitales 2//
 module FSM( input clk, reset, init, almost_full, almost_empty, empty_Fifo, no_empty_Fifo, Fifo_overflow,
 	output reg [3:0] error_full, pausa, continua,
-	input [3:0] data_Fifo);
+	input [7:0] data_Fifo);
 	
 	reg [5:0] state, next_state;
 	
-	reg [3:0] error_full_next, pausa_next, continua_next; //Evitar Latches
+	reg [7:0] error_full_next, pausa_next, continua_next; //Evitar Latches
 
 //Indice de registro de los 6 estados,
  parameter [5:0] Estado_Reset = 0,
