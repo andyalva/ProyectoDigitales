@@ -1,4 +1,4 @@
-module tester(reset, request, pop_id, clk, empty, valid);
+module tester(reset, request, pop_id, clk, valid, empty, read);
 
 output reg [19:0] request;
 output reg clk;
@@ -6,6 +6,7 @@ output reg reset;
 output reg [1:0] pop_id;
 output reg [3:0] empty;
 output reg valid;
+output reg read;
 
    initial
      begin
@@ -14,7 +15,8 @@ output reg valid;
 	reset = 1;
 	empty = 4'b0000;
 	pop_id = 2'b00;
-	valid = 0;
+	valid = 1;
+	read = 0;
 	#4 reset = 0;
 	#10 empty = 4'b1111;
 	#40;
