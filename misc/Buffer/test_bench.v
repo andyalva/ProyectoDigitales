@@ -13,7 +13,7 @@ module testbench ();
    wire [7:0] DATA_OUT;
 
    //Se definen outputs:
-   wire       DATA_OUT0, DATA_OUT1, wRESET, WRITE, almost_Full;
+   wire       DATA_OUT0, DATA_OUT1, wRESET, WRITE, READ, BIG;
 
    tester prob
      (
@@ -21,6 +21,8 @@ module testbench ();
       .DATA_IN(DATA_IN),
       .RESET(wRESET),
       .WRITE(WRITE),
+      .READ(READ),
+      .BIG(BIG),
       .Valid(Valid)
       );
 
@@ -30,8 +32,8 @@ module testbench ();
       .CLK(CLK),
       .RESET(wRESET),
       .WRITE(WRITE),
-      .DATA_OUT(DATA_OUT),
-      .almost_Full(almost_Full),
+      .READ(READ),
+      .BIG(BIG),
       .Valid(Valid)
       );
 
