@@ -19,7 +19,11 @@ module qos(input wire [7:0] DATA_IN,
 	
 	// Wires de conexion
 	wire almost_Full;
-	wire [7:0] DATA_OUT;
+	reg [7:0] DATA_OUT;
+	wire [7:0] DATA_OUT0;
+	wire [7:0] DATA_OUT1;
+	wire [7:0] DATA_OUT2;
+	wire [7:0] DATA_OUT3;
 	reg READ0;
 	reg READ1;
 	reg READ2;
@@ -41,11 +45,11 @@ module qos(input wire [7:0] DATA_IN,
 	wire [1:0] pop_id;
 
 	//FIFO's
-	FIFO fifo0 (DATA_IN, CLK, RESET, WRITE, READ0, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[0], Full[0], valid);
-	FIFO fifo1 (DATA_IN, CLK, RESET, WRITE, READ1, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[1], Full[1], valid);
-	FIFO fifo2 (DATA_IN, CLK, RESET, WRITE, READ2, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[2], Full[2], valid);
-	FIFO fifo3 (DATA_IN, CLK, RESET, WRITE, READ3, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[3], Full[3], valid);
-	FIFO fifo4 (DATA_OUT, CLK, RESET, write, 0, 1, DATA_OUT_FINAL, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, EmptyAux, FullAux, valid);
+	FIFO fifo0 (DATA_IN, CLK, RESET, WRITE, READ0, 0, DATA_OUT0, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[0], Full[0], valid);
+	FIFO fifo1 (DATA_IN, CLK, RESET, WRITE, READ1, 0, DATA_OUT1, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[1], Full[1], valid);
+	FIFO fifo2 (DATA_IN, CLK, RESET, WRITE, READ2, 0, DATA_OUT2, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[2], Full[2], valid);
+	FIFO fifo3 (DATA_IN, CLK, RESET, WRITE, READ3, 0, DATA_OUT3, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[3], Full[3], valid);
+	FIFO fifo4 (DATA_OUT, CLK, RESET, write, 1, 1, DATA_OUT_FINAL, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, EmptyAux, FullAux, valid);
 
 	//Round Robin
 	roundrobin rr0 (RESET, request, pop_id, CLK, valid, Empty, write);
@@ -58,38 +62,42 @@ module qos(input wire [7:0] DATA_IN,
 	always @(posedge CLK) begin
 
 		if (pop_id == 0) begin
-			READ0 = 1;
-			READ1 = 0;
-			READ2 = 0;
-			READ3 = 0;
+			READ0 <= 1;
+			DATA_OUT <= DATA_OUT0;
+			READ1 <= 0;
+			READ2 <= 0;
+			READ3 <= 0;
 		end
 
 		else if (pop_id == 1) begin
-			READ0 = 0;
-			READ1 = 1;
-			READ2 = 0;
-			READ3 = 0;
+			READ0 <= 0;
+			DATA_OUT <= DATA_OUT1;
+			READ1 <= 1;
+			READ2 <= 0;
+			READ3 <= 0;
 		end
 
 		else if (pop_id == 2) begin
-			READ0 = 0;
-			READ1 = 0;
-			READ2 = 1;
-			READ3 = 0;
+			READ0 <= 0;
+			DATA_OUT <= DATA_OUT2;
+			READ1 <= 0;
+			READ2 <= 1;
+			READ3 <= 0;
 		end
 
 		else if (pop_id == 3) begin
-			READ0 = 0;
-			READ1 = 0;
-			READ2 = 0;
-			READ3 = 1;
+			READ0 <= 0;
+			READ1 <= 0;
+			DATA_OUT <= DATA_OUT3;
+			READ2 <= 0;
+			READ3 <= 1;
 		end
 
 		else begin
-			READ0 = 0;
-			READ1 = 0;
-			READ2 = 0;
-			READ3 = 0;
+			READ0 <= 0;
+			READ1 <= 0;
+			READ2 <= 0;
+			READ3 <= 0;
 		end
 
 	end
