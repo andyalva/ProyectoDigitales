@@ -23,6 +23,19 @@ output reg [7:0] DATA_OUT;
 	DATA_OUT = 8'b00000000;
 	#4 init = 1;
 	RESET = 0;
+	@(posedge CLK)
+			DATA_IN <= 8'hFF;
+			@(posedge CLK)
+			WRITE <= 1;
+			DATA_IN <= 8'hAA;
+			@(posedge CLK)
+			DATA_IN <= 8'hBB;
+			@(posedge CLK)
+			DATA_IN <= 8'hCC;
+			@(posedge CLK)
+			DATA_IN <= 8'hDD;
+			@(posedge CLK)
+			DATA_IN <= 8'hEE;
 	#2 init = 0;
 	#100 $finish;
      end
