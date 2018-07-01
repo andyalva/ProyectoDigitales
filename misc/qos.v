@@ -13,11 +13,11 @@ module qos(input wire [7:0] DATA_IN,
 	input wire		BIG,
 	input 			init,
 	input 		[19:0] request,
-	output wire		read
+	output wire		read,
+	output wire	[7:0] DATA_OUT
 	);
 	
 	// Wires de conexion
-	wire [7:0] DATA_OUT;
 	wire almost_Full;
 	reg READ0;
 	reg READ1;
