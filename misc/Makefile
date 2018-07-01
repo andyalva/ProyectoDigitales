@@ -1,5 +1,5 @@
 all:
-	iverilog -o asd qos.v
+	iverilog -o asd test_bench.v
 	vvp asd
 	gtkwave simulation.vcd
 	
