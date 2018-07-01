@@ -76,7 +76,7 @@ Este modulo funciona para darle prioridad al tráfico que proviene de cierto FIF
 
 ## Documentación
 
-El reporte se encuentra en un archivo de PDF en la carpeta "docs".
+El reporte se encuentra en un archivo de PDF llamado "Proyecto 2 Digitales II".
 
 ## Señales FSM
 
