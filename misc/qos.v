@@ -14,15 +14,17 @@ module qos(input wire [7:0] DATA_IN,
 	input 			init,
 	input 		[19:0] request,
 	output wire		read,
-	output wire	[7:0] DATA_OUT
+	output wire	[7:0] DATA_OUT_FINAL
 	);
 	
 	// Wires de conexion
 	wire almost_Full;
+	wire [7:0] DATA_OUT;
 	reg READ0;
 	reg READ1;
 	reg READ2;
 	reg READ3;
+	wire write;
 	wire almost_Empty;
 	wire ErrStackOverflow;
 	wire ErrNoData;
@@ -32,18 +34,21 @@ module qos(input wire [7:0] DATA_IN,
 	wire [3:0] error_full;
 	wire [3:0] pausa;
 	reg valid;
+	wire EmptyAux;
+	wire FullAux;
 	wire [3:0] continua;
 	wire [3:0] Full;
 	wire [1:0] pop_id;
 
 	//FIFO's
-	FIFO fifo0 (DATA_IN, CLK, RESET, WRITE, READ0, BIG, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[0], Full[0], valid);
-	FIFO fifo1 (DATA_IN, CLK, RESET, WRITE, READ1, BIG, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[1], Full[1], valid);
-	FIFO fifo2 (DATA_IN, CLK, RESET, WRITE, READ2, BIG, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[2], Full[2], valid);
-	FIFO fifo3 (DATA_IN, CLK, RESET, WRITE, READ3, BIG, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[3], Full[3], valid);
+	FIFO fifo0 (DATA_IN, CLK, RESET, WRITE, READ0, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[0], Full[0], valid);
+	FIFO fifo1 (DATA_IN, CLK, RESET, WRITE, READ1, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[1], Full[1], valid);
+	FIFO fifo2 (DATA_IN, CLK, RESET, WRITE, READ2, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[2], Full[2], valid);
+	FIFO fifo3 (DATA_IN, CLK, RESET, WRITE, READ3, 0, DATA_OUT, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, Empty[3], Full[3], valid);
+	FIFO fifo4 (DATA_OUT, CLK, RESET, write, 0, 1, DATA_OUT_FINAL, almost_Empty, almost_Full, ErrStackOverflow, ErrNoData, EmptyAux, FullAux, valid);
 
 	//Round Robin
-	roundrobin rr0 (RESET, request, pop_id, CLK, valid, Empty, read);
+	roundrobin rr0 (RESET, request, pop_id, CLK, valid, Empty, write);
 
 	//FSM
 	assign emptyFSM = Empty[0] & Empty[1] & Empty[2] & Empty[3]; 
