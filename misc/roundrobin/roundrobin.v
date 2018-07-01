@@ -2,8 +2,9 @@ module roundrobin(	input reset,
 		input [19:0] request,
 		output reg [1:0] pop_id,
 		input clk,
+		input valid,
 		input [3:0] empty,
-		output reg valid); 
+		output reg read); 
 
 	reg [1:0] mem1 [0:9];
 	integer index;
@@ -21,7 +22,7 @@ module roundrobin(	input reset,
 
 		end
 
-		if (reset == 0) begin
+		if (reset == 0 && valid) begin
 
 			aux = mem1[count];
 
@@ -35,11 +36,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				1:	
@@ -47,11 +48,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				2:
@@ -59,11 +60,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				3:
@@ -71,11 +72,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				4:
@@ -83,11 +84,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				5:
@@ -95,11 +96,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				6:
@@ -107,11 +108,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				7:
@@ -119,11 +120,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				8:
@@ -131,11 +132,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end	
 				9:
@@ -143,11 +144,11 @@ module roundrobin(	input reset,
 						if (empty[aux] == 0) begin
 							pop_id <= mem1 [count];
 							count = count + 1;
-							valid = 1;
+							read = 1;
 						end
 						else begin
 							count = count + 1;
-							valid = 0;
+							read = 0;
 						end
 					end
 				default:

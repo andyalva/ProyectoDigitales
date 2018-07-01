@@ -56,6 +56,20 @@ Cada vez que se hace una lectura el buffer rota todos los datos 1 byte hacia arr
 
 ### Round Robin
 
+Este modulo funciona para darle prioridad al tráfico que proviene de cierto FIFO, tomando los datos de un stream serial que presenta cada 2 bits cuál es el FIFO que debe entregar la información.
+
+#### Inputs
+
+* request - Cadena serial que indica la prioridad de petición al FIFO.
+
+* valid - Bit de válido para poder continuar el trabajo o pausarlo.
+
+#### Outputs
+
+* pop_id - Presenta el ID de cual debe pedir un pop del FIFO.
+
+* read - Bit para validar la lectura de datos desde un módulo siguiente al diseñado.
+
 
 ## Make it work
 
